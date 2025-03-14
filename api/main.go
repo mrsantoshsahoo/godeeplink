@@ -66,10 +66,9 @@
 // 		port = "3000"
 // 	}
 
-// 	fmt.Println("Server running at http://localhost:" + port)
-// 	r.Run(":" + port)
-// }
-
+//		fmt.Println("Server running at http://localhost:" + port)
+//		r.Run(":" + port)
+//	}
 package main
 
 import (
@@ -82,7 +81,6 @@ import (
 )
 
 func setupRouter() *gin.Engine {
-	// Create a new Gin router
 	gin.SetMode(gin.ReleaseMode)
 	router := gin.New()
 
@@ -131,13 +129,13 @@ func setupRouter() *gin.Engine {
 	return router
 }
 
-// ✅ Vercel Handler
+// ✅ Required for Vercel Deployment
 func Handler(w http.ResponseWriter, r *http.Request) {
 	router := setupRouter()
 	router.ServeHTTP(w, r)
 }
 
-// ✅ Main function for Local Development
+// ✅ Runs Locally Only
 // func main() {
 // 	port := os.Getenv("PORT")
 // 	if port == "" {
