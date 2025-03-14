@@ -69,7 +69,7 @@
 //		fmt.Println("Server running at http://localhost:" + port)
 //		r.Run(":" + port)
 //	}
-package index
+package main
 
 import (
 	"fmt"
@@ -80,6 +80,7 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
+// Setup Gin Router
 func setupRouter() *gin.Engine {
 	gin.SetMode(gin.ReleaseMode)
 	router := gin.New()
@@ -129,7 +130,7 @@ func setupRouter() *gin.Engine {
 	return router
 }
 
-// ✅ Required for Vercel Deployment
+// ✅ This function is required for Vercel
 func Handler(w http.ResponseWriter, r *http.Request) {
 	router := setupRouter()
 	router.ServeHTTP(w, r)
