@@ -1,0 +1,13 @@
+[
+    {
+      "relation": ["delegate_permission/common.handle_all_urls"],
+      "target": {
+        "namespace": "android_app",
+        "package_name": "com.fldeeplink.app",
+        "sha256_cert_fingerprints": [
+          "FD:E5:E8:EF:78:41:47:53:09:FF:69:AE:ED:89:49:69:8E:BA:BF:B9:7C:68:08:58:27:D1:74:8F:3C:D7:D0:BD"
+        ]
+      }
+    }
+  ]
+  
