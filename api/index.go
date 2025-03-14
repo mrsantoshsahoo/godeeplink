@@ -74,11 +74,21 @@ package handler
 import (
 	"fmt"
 	"net/http"
-	"os"
-	"path/filepath"
+
+	// "os"
 
 	"github.com/gin-gonic/gin"
 )
+
+// ✅ Runs Locally Only
+// func main() {
+// 	port := os.Getenv("PORT")
+// 	if port == "" {
+// 		port = "3000"
+// 	}
+// 	fmt.Println("Server running at http://localhost:" + port)
+// 	setupRouter().Run(":" + port)
+// }
 
 // Setup Gin Router
 func setupRouter() *gin.Engine {
@@ -98,14 +108,15 @@ func setupRouter() *gin.Engine {
 	})
 
 	// Ensure .well-known directory exists
-	staticPath := filepath.Join("public", ".well-known")
-	if _, err := os.Stat(staticPath); os.IsNotExist(err) {
-		fmt.Println("Creating missing directory:", staticPath)
-		os.MkdirAll(staticPath, os.ModePerm)
-	}
+	// staticPath := filepath.Join("public", ".well-known")
+	// if _, err := os.Stat(staticPath); os.IsNotExist(err) {
+	// 	fmt.Println("Creating missing directory:", staticPath)
+	// 	os.MkdirAll(staticPath, os.ModePerm)
+	// }
 
 	// Serve static files from public/.well-known directory
-	router.StaticFS("/.well-known", http.Dir(staticPath))
+	// router.StaticFS("/.well-known", http.Dir(staticPath))
+	router.StaticFS("/.well-known", http.Dir("./public/.well-known"))
 
 	// Root route
 	router.GET("/", func(c *gin.Context) {
@@ -135,13 +146,3 @@ func Handler(w http.ResponseWriter, r *http.Request) {
 	router := setupRouter()
 	router.ServeHTTP(w, r)
 }
-
-// ✅ Runs Locally Only
-// func main() {
-// 	port := os.Getenv("PORT")
-// 	if port == "" {
-// 		port = "3000"
-// 	}
-// 	fmt.Println("Server running at http://localhost:" + port)
-// 	setupRouter().Run(":" + port)
-// }
