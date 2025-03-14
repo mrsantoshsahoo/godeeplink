@@ -69,7 +69,7 @@
 //		fmt.Println("Server running at http://localhost:" + port)
 //		r.Run(":" + port)
 //	}
-package main
+package handler
 
 import (
 	"fmt"
